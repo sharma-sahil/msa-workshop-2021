@@ -17,7 +17,7 @@ public class ProductsApplication {
 	}
 
 	@Bean(name = "restTemp")
-	@LoadBalanced
+//	@LoadBalanced
 	RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
