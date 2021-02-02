@@ -1,0 +1,23 @@
+*.class
+
+**/*.class
+
+# Package Files #
+*.jar*
+*.war
+*.ear
+
+/**/target/
+
+NAGP-Microservices-Session/prices/target/prices-0.0.1-SNAPSHOT.jar.original
+
+**/eclipsebin
+
+**/eclipsebin/
+
+.metadata/**
+
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs
+/.metadata/
+
+NAGP-Microservices-Session/*/target/
