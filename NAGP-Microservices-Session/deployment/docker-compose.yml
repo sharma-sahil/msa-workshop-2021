@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+    discovery-server:
+        container_name: discovery-server
+        image: sharmasahil95/msa-demo-discovery-server:1
+        ports:
+                - "8761:8761"
+        volumes:
+                - /tmp:/workspace/logs
+    api-gateway:
+        container_name: api-gateway
+        image: sharmasahil95/msa-demo-api-gateway:2
+        ports:
+                - "9999:9999"
+        links:
+                - discovery-server:discovery-server
+        environment:
+                - discovery_server_url=http://discovery-server:8761/eureka
+        volumes:
+                - /tmp:/workspace/logs
+    prices-service:
+        container_name: prices-service
+        image: sharmasahil95/msa-demo-prices-service:2
+        ports:
+                - "8060:8060"
+        links:
+            - discovery-server:discovery-server
+        environment:
+                - discovery_server_url=http://discovery-server:8761/eureka
+        volumes:
+                - /tmp:/workspace/logs
+    products-service:
+        container_name: products-service
+        image: sharmasahil95/msa-demo-products-service:2
+        ports:
+                - "8040:8040"
+        links:
+            - discovery-server:discovery-server
+        environment:
+                - discovery_server_url=http://discovery-server:8761/eureka
+        volumes:
+                - /tmp:/workspace/logs
+
